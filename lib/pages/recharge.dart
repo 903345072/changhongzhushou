@@ -92,12 +92,12 @@ class Login_ extends State<recharge> {
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
-                                      Image.asset("img/alipay.jpg",fit: BoxFit.fill,width: ScreenUtil().setWidth(100),),
+                                      Image.asset("img/yl.jpg",fit: BoxFit.fill,width: ScreenUtil().setWidth(100),),
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          Text("支付宝快捷支付"),
-                                          Text("支付宝推荐,安全快捷",style: TextStyle(color: Colors.grey),),
+                                          Text("银联支付"),
+                                          Text("银联推荐,安全快捷",style: TextStyle(color: Colors.grey),),
                                         ],
                                       )
                                     ],
@@ -170,10 +170,10 @@ class Login_ extends State<recharge> {
                             double rate;
                             setState(() {
                               is_show = true;
-                             yj = int.parse(e);
-                             int w = DateTime.now().weekday;
+                              yj = int.parse(e);
+                              int w = DateTime.now().weekday;
                               rate = 0.02;
-                             give_money = yj*rate;
+                              give_money = yj*rate;
                             });
 
                           },
@@ -233,13 +233,15 @@ class Login_ extends State<recharge> {
                       ResultData res = await HttpManager.getInstance().post("recharge/wechat",params: {"price":yj,"type":pay_type,"from":"weixinh5"},withLoading: false);
 
                       Map data = jsonDecode(res.data["data"]);
-                      print(data);
                       int type_ = res.data["type"];
 
                       if(data["code"] == 200){
                         if(type_ == 1){
-                          print(data);
-                          Future s=   tobias.aliPay(data['url']) ;
+                          if (await canLaunch(data["url"])) {
+                            await launch(data["url"]);
+                          } else {
+                            throw 'Could not launch $data["url"]';
+                          }
                         }else{
                           JumpAnimation().jump(pay(data["data"]), context);
                         }
@@ -268,7 +270,7 @@ class Login_ extends State<recharge> {
 
                 Container(
                   margin: EdgeInsets.only(left: 10),
-                  child: Text("2、为充值成功后，若金额未到账，请等待1-2分钟，或联系客服QQ2035928962",style: TextStyle(fontSize: 12),),
+                  child: Text("2、为充值成功后，若金额未到账，请等待1-2分钟，或联系客服QQ5392548",style: TextStyle(fontSize: 12),),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 10),

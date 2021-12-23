@@ -198,7 +198,7 @@ class _StockRankList extends State<myorder> with AutomaticKeepAliveClientMixin{
                                      children: <Widget>[
                                        Container(
                                          margin:EdgeInsets.only(right: 20),
-                                         child:Text(ls[e2]["flag"]=="pl"?"排列三":ls[e2]["type"].toString()=="f"?"竞彩足球":"竞彩篮球",style: TextStyle(fontWeight: FontWeight.bold),),
+                                         child:Text(ls[e2]["flag"]=="pl"?"排列三":ls[e2]["type"].toString()=="f"?"竞彩足球":ls[e2]["type"].toString()=="bd"?"北京单场":"竞彩篮球",style: TextStyle(fontWeight: FontWeight.bold),),
                                        ),
                                        ls[e2]["state"] == 2?Icon(Icons.monetization_on,color: Colors.orange,size: 18,):Container()
                                      ],

@@ -24,20 +24,20 @@ class basketballMix extends StatefulWidget {
 
   basketballMix(
       {Key key,
-      this.callBack,
-      this.games,
-      this.e2,
-      this.e,
-      this.zd_name,
-      this.kd_name,
-      this.sf,
-      this.rfsf,
-      this.zs_sfc,
-      this.ks_sfc,
-      this.dxf,
-      this.p_goal,
-      this.p_status,
-      this.dafen
+        this.callBack,
+        this.games,
+        this.e2,
+        this.e,
+        this.zd_name,
+        this.kd_name,
+        this.sf,
+        this.rfsf,
+        this.zs_sfc,
+        this.ks_sfc,
+        this.dxf,
+        this.p_goal,
+        this.p_status,
+        this.dafen
       })
       : super(key: key);
 
@@ -323,8 +323,8 @@ class _ChildState extends State<basketballMix> {
                                                                 child: Text(
                                                                   "大小分",
                                                                   style: TextStyle(
-                                                                    fontSize: ScreenUtil().setSp(13),
-                                                                    height: 1,
+                                                                      fontSize: ScreenUtil().setSp(13),
+                                                                      height: 1,
                                                                       color: Colors
                                                                           .white,
                                                                       decoration:
@@ -503,6 +503,39 @@ class _ChildState extends State<basketballMix> {
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                                 children: <Widget>[
+
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        right: 10),
+                                                    child: Text(widget.kd_name),
+                                                  ),
+                                                  Stack(
+                                                    children: <Widget>[
+                                                      Icon(
+                                                        const IconData(0xe606,
+                                                            fontFamily:
+                                                            "iconfont"),
+                                                        color: Colors.blue,
+                                                      ),
+                                                      Positioned(
+                                                        left: ScreenUtil()
+                                                            .setWidth(4),
+                                                        child: Text(
+                                                          "客",
+                                                          style: TextStyle(
+                                                              color:
+                                                              Colors.white),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+
+
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        left: 25, right: 10),
+                                                    child: Text("VS"),
+                                                  ),
                                                   Container(
                                                     child: Text(widget.zd_name),
                                                   ),
@@ -530,36 +563,7 @@ class _ChildState extends State<basketballMix> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        left: 10, right: 25),
-                                                    child: Text("VS"),
-                                                  ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: 10),
-                                                    child: Text(widget.kd_name),
-                                                  ),
-                                                  Stack(
-                                                    children: <Widget>[
-                                                      Icon(
-                                                        const IconData(0xe606,
-                                                            fontFamily:
-                                                            "iconfont"),
-                                                        color: Colors.blue,
-                                                      ),
-                                                      Positioned(
-                                                        left: ScreenUtil()
-                                                            .setWidth(4),
-                                                        child: Text(
-                                                          "客",
-                                                          style: TextStyle(
-                                                              color:
-                                                              Colors.white),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
+
                                                 ],
                                               ),
                                             ),
@@ -629,165 +633,165 @@ class _ChildState extends State<basketballMix> {
   }
 
 
-getsfList(state){
-  String status = widget.p_status[0];
-  if(status == "0"){
-    return [Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(width: 0.3, color: Colors.grey)),
-      alignment: Alignment.center,
-      width: ScreenUtil().setWidth(320),
-      height: ScreenUtil().setHeight(60),
-      child: Text("暂停销售",),
-    )];
-  }
+  getsfList(state){
+    String status = widget.p_status[0];
+    if(status == "0"){
+      return [Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(width: 0.3, color: Colors.grey)),
+        alignment: Alignment.center,
+        width: ScreenUtil().setWidth(320),
+        height: ScreenUtil().setHeight(60),
+        child: Text("暂停销售",),
+      )];
+    }
 
-  return [GestureDetector(
-    onTap: () {
-      Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
-      String mid = widget.games[widget.e2][widget.e]["check_info"][0]["id"].toString();
-      String id = widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][0]["id"].toString();
-      if(checks[mid] != null){
-        List attr = checks[mid];
-        if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][0]["color"] == "co"){
+    return [GestureDetector(
+      onTap: () {
+        Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
+        String mid = widget.games[widget.e2][widget.e]["check_info"][0]["id"].toString();
+        String id = widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][0]["id"].toString();
+        if(checks[mid] != null){
+          List attr = checks[mid];
+          if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][0]["color"] == "co"){
 
             attr.add(id+"-"+widget.sf[0]);
 
 
+          }else{
+            attr.remove(id+"-"+widget.sf[0]);
+          }
+          checks[mid] = attr;
         }else{
-          attr.remove(id+"-"+widget.sf[0]);
+          List attr = [];
+          attr.add(id+"-"+widget.sf[0]);
+          checks[mid] = attr;
         }
-        checks[mid] = attr;
-      }else{
-        List attr = [];
-        attr.add(id+"-"+widget.sf[0]);
-        checks[mid] = attr;
-      }
 
-      widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
-      state(() {
-        widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][0]
-        ["color"] = widget.games[widget.e2][widget.e]["check_info"][0]
-        ["bet_way"][0]["color"] ==
-            "co"
-            ? "red"
-            : "co";
-      });
-
-    },
-    child: Container(
-      alignment: Alignment.center,
-      width: ScreenUtil().setWidth(160),
-      height: ScreenUtil().setHeight(60),
-      decoration: BoxDecoration(
-          color: widget.games[widget.e2][widget.e]["check_info"][0]
+        widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
+        state(() {
+          widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][0]
+          ["color"] = widget.games[widget.e2][widget.e]["check_info"][0]
           ["bet_way"][0]["color"] ==
               "co"
-              ? Color(0xfffff5f8)
-              : Colors.red,
-          border: Border(
-              right: BorderSide(width: 1, color: Color(0xfff2f2f2)),
-              bottom: BorderSide(width: 1, color: Color(0xfff2f2f2)))),
-      child: Wrap(
-        spacing: 5,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: <Widget>[
-          Text(
-            "主负",
-            style: TextStyle(
-                color: widget.games[widget.e2][widget.e]["check_info"][0]
-                ["bet_way"][0]["color"] ==
-                    "co"
-                    ? Colors.black
-                    : Colors.white),
-          ),
-          Text(
-            widget.sf[0],
-            style: TextStyle(
-                color: widget.games[widget.e2][widget.e]["check_info"][0]
-                ["bet_way"][0]["color"] ==
-                    "co"
-                    ? Colors.grey
-                    : Colors.white),
-          )
-        ],
+              ? "red"
+              : "co";
+        });
+
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: ScreenUtil().setWidth(160),
+        height: ScreenUtil().setHeight(60),
+        decoration: BoxDecoration(
+            color: widget.games[widget.e2][widget.e]["check_info"][0]
+            ["bet_way"][0]["color"] ==
+                "co"
+                ? Color(0xfffff5f8)
+                : Colors.red,
+            border: Border(
+                right: BorderSide(width: 1, color: Color(0xfff2f2f2)),
+                bottom: BorderSide(width: 1, color: Color(0xfff2f2f2)))),
+        child: Wrap(
+          spacing: 5,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: <Widget>[
+            Text(
+              "主负",
+              style: TextStyle(
+                  color: widget.games[widget.e2][widget.e]["check_info"][0]
+                  ["bet_way"][0]["color"] ==
+                      "co"
+                      ? Colors.black
+                      : Colors.white),
+            ),
+            Text(
+              widget.sf[0],
+              style: TextStyle(
+                  color: widget.games[widget.e2][widget.e]["check_info"][0]
+                  ["bet_way"][0]["color"] ==
+                      "co"
+                      ? Colors.grey
+                      : Colors.white),
+            )
+          ],
+        ),
       ),
-    ),
-  ),GestureDetector(
-    onTap: () {
-      Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
-      String mid = widget.games[widget.e2][widget.e]["check_info"][0]["id"].toString();
-      String id = widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][1]["id"].toString();
-      if(checks[mid] != null){
-        List attr = checks[mid];
-        if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][1]["color"] == "co"){
+    ),GestureDetector(
+      onTap: () {
+        Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
+        String mid = widget.games[widget.e2][widget.e]["check_info"][0]["id"].toString();
+        String id = widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][1]["id"].toString();
+        if(checks[mid] != null){
+          List attr = checks[mid];
+          if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][1]["color"] == "co"){
 
             attr.add(id+"-"+widget.sf[1]);
 
+          }else{
+            attr.remove(id+"-"+widget.sf[1]);
+          }
+          checks[mid] = attr;
         }else{
-          attr.remove(id+"-"+widget.sf[1]);
+          List attr = [];
+          attr.add(id+"-"+widget.sf[1]);
+          checks[mid] = attr;
         }
-        checks[mid] = attr;
-      }else{
-        List attr = [];
-        attr.add(id+"-"+widget.sf[1]);
-        checks[mid] = attr;
-      }
 
-      widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
-      state(() {
-        widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][1]
-        ["color"] = widget.games[widget.e2][widget.e]["check_info"][0]
-        ["bet_way"][1]["color"] ==
-            "co"
-            ? "red"
-            : "co";
-      });
-
-    },
-    child: Container(
-      alignment: Alignment.center,
-      width: ScreenUtil().setWidth(160),
-      height: ScreenUtil().setHeight(60),
-      decoration: BoxDecoration(
-          color: widget.games[widget.e2][widget.e]["check_info"][0]
+        widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
+        state(() {
+          widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][1]
+          ["color"] = widget.games[widget.e2][widget.e]["check_info"][0]
           ["bet_way"][1]["color"] ==
               "co"
-              ? Color(0xfffff5f8)
-              : Colors.red,
-          border: Border(
-              right: BorderSide(width: 1, color: Color(0xfff2f2f2)),
-              bottom: BorderSide(width: 1, color: Color(0xfff2f2f2)))),
-      child: Wrap(
-        spacing: 5,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: <Widget>[
-          Text(
-            "主胜",
-            style: TextStyle(
-                color: widget.games[widget.e2][widget.e]["check_info"][0]
-                ["bet_way"][1]["color"] ==
-                    "co"
-                    ? Colors.black
-                    : Colors.white),
-          ),
-          Text(
-            widget.sf[1],
-            style: TextStyle(
-                color: widget.games[widget.e2][widget.e]["check_info"][0]
-                ["bet_way"][1]["color"] ==
-                    "co"
-                    ? Colors.grey
-                    : Colors.white),
-          )
-        ],
-      ),
-    ),
-  )];
-}
+              ? "red"
+              : "co";
+        });
 
-getrfList(state){
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: ScreenUtil().setWidth(160),
+        height: ScreenUtil().setHeight(60),
+        decoration: BoxDecoration(
+            color: widget.games[widget.e2][widget.e]["check_info"][0]
+            ["bet_way"][1]["color"] ==
+                "co"
+                ? Color(0xfffff5f8)
+                : Colors.red,
+            border: Border(
+                right: BorderSide(width: 1, color: Color(0xfff2f2f2)),
+                bottom: BorderSide(width: 1, color: Color(0xfff2f2f2)))),
+        child: Wrap(
+          spacing: 5,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: <Widget>[
+            Text(
+              "主胜",
+              style: TextStyle(
+                  color: widget.games[widget.e2][widget.e]["check_info"][0]
+                  ["bet_way"][1]["color"] ==
+                      "co"
+                      ? Colors.black
+                      : Colors.white),
+            ),
+            Text(
+              widget.sf[1],
+              style: TextStyle(
+                  color: widget.games[widget.e2][widget.e]["check_info"][0]
+                  ["bet_way"][1]["color"] ==
+                      "co"
+                      ? Colors.grey
+                      : Colors.white),
+            )
+          ],
+        ),
+      ),
+    )];
+  }
+
+  getrfList(state){
     String status = widget.p_status[1];
     if(status == "0"){
       return [Container(
@@ -810,7 +814,7 @@ getrfList(state){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][0]["color"] == "co"){
 
-              attr.add(id+"-"+widget.rfsf[0]);
+            attr.add(id+"-"+widget.rfsf[0]);
 
 
           }else{
@@ -881,7 +885,7 @@ getrfList(state){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][1]["color"] == "co"){
 
-              attr.add(id+"-"+widget.rfsf[1]);
+            attr.add(id+"-"+widget.rfsf[1]);
 
 
           }else{
@@ -945,7 +949,7 @@ getrfList(state){
     )];
   }
 
-getdxfList(state){
+  getdxfList(state){
     String status = widget.p_status[3];
     if(status == "0"){
       return [Container(
@@ -968,7 +972,7 @@ getdxfList(state){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][0]["color"] == "co"){
 
-              attr.add(id+"-"+widget.dxf[0]);
+            attr.add(id+"-"+widget.dxf[0]);
 
 
           }else{
@@ -1038,7 +1042,7 @@ getdxfList(state){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][1]["color"] == "co"){
 
-              attr.add(id+"-"+widget.dxf[1]);
+            attr.add(id+"-"+widget.dxf[1]);
 
 
           }else{
@@ -1102,95 +1106,95 @@ getdxfList(state){
     )];
   }
 
-getzssfcList(state){
-  String status = widget.p_status[2];
-  if(status == "0"){
-    return [Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(width: 0.3, color: Colors.grey)),
-      alignment: Alignment.center,
-      width: ScreenUtil().setWidth(320),
-      height: ScreenUtil().setHeight(60*3),
-      child: Text("暂停销售",),
-    )];
-  }
-  List zssfc = config.getsfcZs();
-  return widget.zs_sfc.asMap().keys.map((e) {
+  getzssfcList(state){
+    String status = widget.p_status[2];
+    if(status == "0"){
+      return [Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(width: 0.3, color: Colors.grey)),
+        alignment: Alignment.center,
+        width: ScreenUtil().setWidth(320),
+        height: ScreenUtil().setHeight(60*3),
+        child: Text("暂停销售",),
+      )];
+    }
+    List zssfc = config.getsfcZs();
+    return widget.zs_sfc.asMap().keys.map((e) {
 
-    return GestureDetector(
-      onTap: (){
-        Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
-        String mid = widget.games[widget.e2][widget.e]["check_info"][2]["id"].toString();
-        String id = widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["id"].toString();
-        if(checks[mid] != null){
-          List attr = checks[mid];
-          if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
+      return GestureDetector(
+        onTap: (){
+          Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
+          String mid = widget.games[widget.e2][widget.e]["check_info"][2]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["id"].toString();
+          if(checks[mid] != null){
+            List attr = checks[mid];
+            if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
 
               attr.add(id+"-"+widget.zs_sfc[e]);
 
 
+            }else{
+              attr.remove(id+"-"+widget.zs_sfc[e]);
+            }
+            checks[mid] = attr;
           }else{
-            attr.remove(id+"-"+widget.zs_sfc[e]);
+            List attr = [];
+            attr.add(id+"-"+widget.zs_sfc[e]);
+            checks[mid] = attr;
           }
-          checks[mid] = attr;
-        }else{
-          List attr = [];
-          attr.add(id+"-"+widget.zs_sfc[e]);
-          checks[mid] = attr;
-        }
-        widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
-        state(() {
-          widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]
-          ["color"] = widget.games[widget.e2][widget.e]["check_info"][2]
-          ["bet_way"][e]["color"] ==
-              "co"
-              ? "red"
-              : "co";
-        });
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            color: widget.games[widget.e2][widget.e]["check_info"][2]
+          widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
+          state(() {
+            widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]
+            ["color"] = widget.games[widget.e2][widget.e]["check_info"][2]
             ["bet_way"][e]["color"] ==
                 "co"
-                ? Color(0xfffff5f8)
-                : Colors.red,
-            border: Border(
-                right: BorderSide(width: 1, color: Color(0xfff2f2f2)),
-                bottom: BorderSide(width: 1, color: Color(0xfff2f2f2)))),
-        width: ScreenUtil().setWidth(160),
-        height: ScreenUtil().setHeight(60),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(bottom: 2),
-              child: Text(zssfc[e],style: TextStyle(
-                  color: widget.games[widget.e2][widget.e]["check_info"][2]
-                  ["bet_way"][e]["color"] ==
-                      "co"
-                      ? Colors.black
-                      : Colors.white
-              ),),
-            ),
-            Text(
-              widget.zs_sfc[e],
-              style: TextStyle(
-                  color: widget.games[widget.e2][widget.e]["check_info"][2]
-                  ["bet_way"][e]["color"] ==
-                      "co"
-                      ? Colors.grey
-                      : Colors.white, fontSize: ScreenUtil().setSp(12)),
-            ),
-          ],
+                ? "red"
+                : "co";
+          });
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              color: widget.games[widget.e2][widget.e]["check_info"][2]
+              ["bet_way"][e]["color"] ==
+                  "co"
+                  ? Color(0xfffff5f8)
+                  : Colors.red,
+              border: Border(
+                  right: BorderSide(width: 1, color: Color(0xfff2f2f2)),
+                  bottom: BorderSide(width: 1, color: Color(0xfff2f2f2)))),
+          width: ScreenUtil().setWidth(160),
+          height: ScreenUtil().setHeight(60),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(bottom: 2),
+                child: Text(zssfc[e],style: TextStyle(
+                    color: widget.games[widget.e2][widget.e]["check_info"][2]
+                    ["bet_way"][e]["color"] ==
+                        "co"
+                        ? Colors.black
+                        : Colors.white
+                ),),
+              ),
+              Text(
+                widget.zs_sfc[e],
+                style: TextStyle(
+                    color: widget.games[widget.e2][widget.e]["check_info"][2]
+                    ["bet_way"][e]["color"] ==
+                        "co"
+                        ? Colors.grey
+                        : Colors.white, fontSize: ScreenUtil().setSp(12)),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }).toList();
-}
+      );
+    }).toList();
+  }
 
-getkssfcList(state){
+  getkssfcList(state){
     String status = widget.p_status[2];
     if(status == "0"){
       return [Container(
@@ -1215,7 +1219,7 @@ getkssfcList(state){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["color"] == "co"){
 
-                attr.add(id+"-"+widget.ks_sfc[e]);
+              attr.add(id+"-"+widget.ks_sfc[e]);
 
 
             }else{
@@ -1278,13 +1282,13 @@ getkssfcList(state){
     }).toList();
   }
   //表面
-getrfList_() {
+  getrfList_() {
     String status = widget.p_status[1];
     print(status);
     if(status == "0"){
       return [Container(
         decoration: BoxDecoration(
-           color: Colors.white,
+            color: Colors.white,
             border: Border.all(width: 0.3, color: Colors.grey)),
         alignment: Alignment.center,
         width: ScreenUtil().setWidth(240),
@@ -1301,7 +1305,7 @@ getrfList_() {
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][0]["color"] == "co"){
-              attr.add(id+"-"+widget.rfsf[0]);
+            attr.add(id+"-"+widget.rfsf[0]);
           }else{
             attr.remove(id+"-"+widget.rfsf[0]);
           }
@@ -1363,7 +1367,7 @@ getrfList_() {
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][1]["color"] == "co"){
 
-              attr.add(id+"-"+widget.rfsf[1]);
+            attr.add(id+"-"+widget.rfsf[1]);
 
 
           }else{
@@ -1410,7 +1414,7 @@ getrfList_() {
     )];
 
   }
-getdxfList_() {
+  getdxfList_() {
     String status = widget.p_status[3];
     if(status == "0"){
       return [Container(
@@ -1433,7 +1437,7 @@ getdxfList_() {
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][0]["color"] == "co"){
 
-              attr.add(id+"-"+widget.dxf[0]);
+            attr.add(id+"-"+widget.dxf[0]);
 
 
           }else{
@@ -1497,7 +1501,7 @@ getdxfList_() {
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][1]["color"] == "co"){
 
-              attr.add(id+"-"+widget.dxf[1]);
+            attr.add(id+"-"+widget.dxf[1]);
 
 
           }else{

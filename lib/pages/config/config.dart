@@ -8,6 +8,19 @@ class config{
       "主负",
     ];
   }
+  static List getbsf(){
+    return [
+      "胜",
+      "负",
+    ];
+  }
+  static List getbspf(){
+    return [
+      "胜",
+      "平",
+      "负",
+    ];
+  }
   static List getrq(){
     return [
       "主胜",
@@ -50,6 +63,36 @@ class config{
      "负其他",
    ];
  }
+
+  static List  getbScore(){
+    return [
+      "1:0",
+      "2:0",
+      "2:1",
+      "3:0",
+      "3:1",
+      "3:2",
+      "4:0",
+      "4:1",
+      "4:2",
+      "胜其他",
+      "0:0",
+      "1:1",
+      "2:2",
+      "3:3",
+      "平其他",
+      "0:1",
+      "0:2",
+      "1:2",
+      "0:3",
+      "1:3",
+      "2:3",
+      "0:4",
+      "1:4",
+      "2:4",
+      "负其他",
+    ];
+  }
  static List getTotal(){
     return [
       "0",
@@ -75,6 +118,27 @@ class config{
       "负负",
     ];
  }
+  static List getbHalf(){
+    return [
+      "3-3",
+      "3-1",
+      "3-0",
+      "1-3",
+      "1-1",
+      "1-0",
+      "0-3",
+      "0-1",
+      "0-0",
+    ];
+  }
+  static List getonup(){
+    return [
+      "上单",
+      "上双",
+      "下单",
+      "下双",
+    ];
+  }
  static List getTest(){
     Color co = Color(0xfffff5f8);
     return [

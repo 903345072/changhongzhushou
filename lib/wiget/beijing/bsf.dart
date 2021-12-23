@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/pages/config/config.dart';
 
-class feirangqiu extends StatefulWidget {
+class bsf extends StatefulWidget {
   Function callBack;
   Map games;
   String e2;
@@ -15,7 +15,7 @@ class feirangqiu extends StatefulWidget {
   List spf;
   List p_status;
   String p_goal;
-  feirangqiu(
+  bsf(
       {Key key,
         this.callBack,
         this.games,
@@ -36,7 +36,7 @@ class feirangqiu extends StatefulWidget {
   }
 }
 
-class _ChildState extends State<feirangqiu> {
+class _ChildState extends State<bsf> {
   @override
   void initState() {
     super.initState();
@@ -50,25 +50,32 @@ class _ChildState extends State<feirangqiu> {
 
       children: <Widget>[
         Container(
+
+          width: ScreenUtil().setWidth(290),
           margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(15)),
           child: Row(
             children: <Widget>[
-              Text(
-                widget.zd_name,
-                style: TextStyle(fontSize: ScreenUtil().setSp(16)),
+              Container(
+                margin: EdgeInsets.only(
+                  left: ScreenUtil().setWidth(30),
+                ),
+                child: Text(
+                  widget.zd_name,
+                  style: TextStyle(fontSize: ScreenUtil().setSp(13)),
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(
-                    left: ScreenUtil().setWidth(35),
-                    right: ScreenUtil().setWidth(35)),
+                    left: ScreenUtil().setWidth(5),
+                    right: ScreenUtil().setWidth(5)),
                 child: Text(
-                  "VS",
-                  style: TextStyle(color: Colors.black ,fontSize: ScreenUtil().setSp(16)),
+                  widget.p_goal,
+                  style: TextStyle(color: double.parse(widget.p_goal)>0?Colors.red:Colors.green ,fontSize: ScreenUtil().setSp(16)),
                 ),
               ),
               Text(
                 widget.kd_name,
-                style: TextStyle(fontSize: ScreenUtil().setSp(16)),
+                style: TextStyle(fontSize: ScreenUtil().setSp(13)),
               )
             ],
           ),
@@ -106,20 +113,20 @@ class _ChildState extends State<feirangqiu> {
         child: Text("暂停销售",),
       )];
     }
-    List frqspf_ = config.getFrq();
+    List frqspf_ = config.getbsf();
+
     return widget.spf.asMap().keys.map((e) {
       return GestureDetector(
         onTap: () {
+
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][0]["id"].toString();
+
           String id = widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["color"] == "co"){
-
               attr.add(id+"-"+widget.spf[e]);
-
-
             }else{
               attr.remove(id+"-"+widget.spf[e]);
             }
@@ -141,6 +148,7 @@ class _ChildState extends State<feirangqiu> {
           widget.callBack(widget.games);
         },
         child: Container(
+
           alignment: Alignment.center,
           width: ScreenUtil().setWidth(105),
           height: ScreenUtil().setHeight(40),
