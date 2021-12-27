@@ -759,6 +759,7 @@ class hangqing_ extends State<orderdetail>{
     String h_name ;
     String a_name ;
     String bifen ;
+    String game_no = "";
     int num;
     Map data;
     if(order["mode"] == "4"){
@@ -776,6 +777,9 @@ class hangqing_ extends State<orderdetail>{
         h_name = s[key][0]["h_name"].toString();
         a_name = s[key][0]["a_name"].toString();
         bifen = s[key][0]["bifen"].toString();
+        if(order["type"]=="bd"){
+          game_no =s[key][0]["game_no"].toString();;
+        }
         List z = s[key];
 
         z.forEach((element) {
@@ -802,13 +806,13 @@ class hangqing_ extends State<orderdetail>{
               alignment: Alignment.center,
               width: ScreenUtil().setWidth(60),
 
-              child: Column(
+              child:    order["type"]!="bd" ?Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("周"+num_to_cn[week]),
+               Text("周"+num_to_cn[week]),
                   Text(order_no),
                 ],
-              ),
+              ):Text(game_no),
             ),
 
 

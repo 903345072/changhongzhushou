@@ -432,43 +432,43 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
                         ),
                       ),
                     ),
-//                    Container(
-//                      margin: EdgeInsets.only(top: 10,bottom: 10,right: 8),
-//                      child: Ink(
-//                        child: InkWell(
-//                          splashColor: Colors.black26,
-//                          child: Wrap(
-//                            crossAxisAlignment: WrapCrossAlignment.center,
-//                            spacing: 5,
-//                            children: <Widget>[
-//                              Card(
-//                                shape: RoundedRectangleBorder(
-//                                    borderRadius:
-//                                    BorderRadiusDirectional.circular(12)),
-//                                clipBehavior: Clip.antiAlias,
-//                                child: Image.asset(
-//                                  "img/beijing.jpg",
-//                                  fit: BoxFit.fill,
-//                                  width: ScreenUtil().setWidth(55),
-//                                  height: ScreenUtil().setWidth(55),
-//                                ),
-//                              ),
-//                              Container(
-//                                height: ScreenUtil().setWidth(55),
-//                                child: Wrap(
-//                                  direction: Axis.vertical,
-//                                  alignment: WrapAlignment.spaceAround,
-//                                  children: <Widget>[Text("北京单场"), Text("北单开售中",style: TextStyle(color: Colors.grey,fontSize: ScreenUtil().setSp(12)),)],
-//                                ),
-//                              )
-//                            ],
-//                          ),
-//                          onTap: () {
-//                            JumpAnimation().jump(beijing(), context);
-//                          },
-//                        ),
-//                      ),
-//                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10,bottom: 10,right: 8),
+                      child: Ink(
+                        child: InkWell(
+                          splashColor: Colors.black26,
+                          child: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 5,
+                            children: <Widget>[
+                              Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadiusDirectional.circular(12)),
+                                clipBehavior: Clip.antiAlias,
+                                child: Image.asset(
+                                  "img/beijing.jpg",
+                                  fit: BoxFit.fill,
+                                  width: ScreenUtil().setWidth(55),
+                                  height: ScreenUtil().setWidth(55),
+                                ),
+                              ),
+                              Container(
+                                height: ScreenUtil().setWidth(55),
+                                child: Wrap(
+                                  direction: Axis.vertical,
+                                  alignment: WrapAlignment.spaceAround,
+                                  children: <Widget>[Text("北京单场"), Text("北单开售中",style: TextStyle(color: Colors.grey,fontSize: ScreenUtil().setSp(12)),)],
+                                ),
+                              )
+                            ],
+                          ),
+                          onTap: () {
+                            JumpAnimation().jump(beijing(), context);
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

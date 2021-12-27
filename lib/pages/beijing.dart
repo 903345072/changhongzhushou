@@ -43,7 +43,6 @@ class _GZXDropDownMenuTestPageState extends State<beijing> {
   List lsl = [{"color":Colors.red}];
   List frqspf_ = [{"text":"主胜","color":Color(0xfffff5f8)},{"text":"平","color":Color(0xfffff5f8)},{"text":"主负","color":Color(0xfffff5f8)}];
   List methods = [
-    {"name": "胜负过关","least_game":1},
     {"name": "胜平负","least_game":1},
     {"name": "总进球数","least_game":1},
     {"name": "半全场胜平负","least_game":1},
@@ -222,41 +221,34 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,sf,crs_win,ttg_odds,
 
     switch(index){
       case 0:
-        return bsf(callBack: (value) {
-          setState(() {
-            games = value;
-          });
-        },p_status:p_status,p_goal:p_goal,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,spf: sf
-        );
-      case 1:
         return bspf(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,p_goal:p_goal,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,spf: spf
         );
-      case 2:
+      case 1:
         return bttg(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,ttg_odds: ttg_odds,
         );
-      case 3:
+      case 2:
         return bqc(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,half_odds: half_odds,
         );
-      case 4:
+      case 3:
         return bonup(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,ttg_odds: onup,
         );
-      case 5:
+      case 4:
         return bbf(callBack: (value) {
           setState(() {
             games = value;
@@ -355,7 +347,7 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,sf,crs_win,ttg_odds,
                               margin: EdgeInsets.only(top: 25),
                               color: Colors.white,
                               child: Wrap(
-                                alignment: WrapAlignment.spaceBetween,
+                                alignment: WrapAlignment.start,
                                 children: getMethods(),
                               ),
                             ),

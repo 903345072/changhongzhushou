@@ -1505,22 +1505,8 @@ class beijingorder_ extends State<beijingorder> {
   getComponent(p_status, p_goal, games, e2, e, zd_name, kd_name, spf, sf,
       crs_win, ttg_odds, half_odds,onup) {
     switch (widget.type) {
+
       case 0:
-        return  bsf(
-            callBack: (value) {
-              setState(() {
-                games = value;
-              });
-            },
-            p_status: p_status,
-            p_goal: p_goal,
-            games: games,
-            e2: e2,
-            e: e,
-            zd_name: zd_name,
-            kd_name: kd_name,
-            spf: sf);
-      case 1:
         return bspf(
             callBack: (value) {
               setState(() {
@@ -1535,35 +1521,35 @@ class beijingorder_ extends State<beijingorder> {
             zd_name: zd_name,
             kd_name: kd_name,
             spf: spf);
-      case 2:
+      case 1:
        return bttg(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,ttg_odds: ttg_odds,
         );
-      case 3:
+      case 2:
       return bqc(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,half_odds: half_odds,
         );
-      case 4:
+      case 3:
         return bonup(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,ttg_odds: onup,
         );
-      case 5:
+      case 4:
         return bbf(callBack: (value) {
           setState(() {
             games = value;
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,crs_win: crs_win,
         );
-      case 6:
+      case 5:
         return feirangqiu(
             callBack: (value) {
               setState(() {
@@ -1578,7 +1564,7 @@ class beijingorder_ extends State<beijingorder> {
             zd_name: zd_name,
             kd_name: kd_name,
             spf: spf);
-      case 7:
+      case 6:
         return rangqiu(
             callBack: (value) {
               setState(() {
@@ -1593,7 +1579,7 @@ class beijingorder_ extends State<beijingorder> {
             zd_name: zd_name,
             kd_name: kd_name,
             rqspf: sf);
-      case 8:
+      case 7:
         return zongjinqiu(
           callBack: (value) {
             setState(() {
@@ -1608,7 +1594,7 @@ class beijingorder_ extends State<beijingorder> {
           kd_name: kd_name,
           ttg_odds: ttg_odds,
         );
-      case 9:
+      case 8:
         return bifen(
           callBack: (value) {
             setState(() {
