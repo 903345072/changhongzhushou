@@ -280,7 +280,7 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
                                 Text("恭喜 ",style: TextStyle(color: Color(0xff575757)),),
                                 Text(zhongjiang[index]["nickname"]+" ",style: TextStyle(color: Color(0xff575757))),
                                 Text("喜中",style: TextStyle(color: Color(0xff575757))),
-                                zhongjiang[index]["type"] =="f"? Text("竞彩足球",style: TextStyle(color: Color(0xff575757))):Text("竞彩篮球",style: TextStyle(color: Color(0xff575757))),
+                                zhongjiang[index]["type"] =="f"? Text("竞彩足球",style: TextStyle(color: Color(0xff575757))):zhongjiang[index]["type"] =="bd"?Text("北京单场",style: TextStyle(color: Color(0xff575757))):Text("竞彩篮球",style: TextStyle(color: Color(0xff575757))),
                                 Text(formatNum(zhongjiang[index]["award_money"], 1),style: TextStyle(color: Colors.red),),
                                 Text("元",style: TextStyle(color: Color(0xff575757)))
                               ],
