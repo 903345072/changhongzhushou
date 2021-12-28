@@ -28,26 +28,26 @@ import 'package:flutterapp2/wiget/football/zongjinqiu.dart';
 import 'IndexBack.dart';
 import 'beijingorder.dart';
 import 'order.dart';
-class beijing extends StatefulWidget {
+class beijingchuan extends StatefulWidget {
   @override
   _GZXDropDownMenuTestPageState createState() =>
       _GZXDropDownMenuTestPageState();
 }
-class _GZXDropDownMenuTestPageState extends State<beijing> {
+class _GZXDropDownMenuTestPageState extends State<beijingchuan> {
   Future _future;
   List game_ids = [];
   Map num_to_cn = {"1":"一","2":"二","3":"三","4":"四","5":"五","6":"六","7":"末"};
   Map games = {};
   List game_mid_list = [];
-  int least_game = 1;
+  int least_game = 2;
   List lsl = [{"color":Colors.red}];
   List frqspf_ = [{"text":"主胜","color":Color(0xfffff5f8)},{"text":"平","color":Color(0xfffff5f8)},{"text":"主负","color":Color(0xfffff5f8)}];
   List methods = [
-    {"name": "胜平负","least_game":1},
-    {"name": "总进球数","least_game":1},
-    {"name": "半全场胜平负","least_game":1},
-    {"name": "上下盘单双数","least_game":1},
-    {"name": "单场比分","least_game":1},
+    {"name": "胜平负","least_game":2},
+    {"name": "总进球数","least_game":2},
+    {"name": "半全场胜平负","least_game":2},
+    {"name": "上下盘单双数","least_game":2},
+    {"name": "单场比分","least_game":2},
   ];
   bool withLoading = false;
   int index = 0;
@@ -65,19 +65,19 @@ class _GZXDropDownMenuTestPageState extends State<beijing> {
   }
 
   Future getGames() async {
-   ResultData res = await HttpManager.getInstance().get("beijing_game",params: {"type":index+1},withLoading: withLoading);
-   setState(() {
+    ResultData res = await HttpManager.getInstance().get("beijing_game",params: {"type":index+1},withLoading: withLoading);
+    setState(() {
 
-       if(res.data["count"] > 0){
-         games = res.data["games"];
-       }else{
-         games = {};
-         Toast.toast(context,msg: "暂无对阵信息");
-       }
+      if(res.data["count"] > 0){
+        games = res.data["games"];
+      }else{
+        games = {};
+        Toast.toast(context,msg: "暂无对阵信息");
+      }
 
 
 
-   });
+    });
   }
   List getMethods() {
     return methods.asMap().keys.map((e) {
@@ -100,7 +100,7 @@ class _GZXDropDownMenuTestPageState extends State<beijing> {
                 Navigator.pop(context);
               });
 
-                getGames();
+              getGames();
 
             }
 
@@ -121,11 +121,11 @@ class _GZXDropDownMenuTestPageState extends State<beijing> {
 
   List getGameList(){
 
-   return games.keys.map((e){
-     String date = e;
+    return games.keys.map((e){
+      String date = e;
 
 
-     List list_game =  games[e];
+      List list_game =  games[e];
       return Container(
         decoration: BoxDecoration(color: Colors.white,border: Border(bottom: BorderSide(width: 0.3,color: Colors.grey))),
         child: Container(
@@ -138,10 +138,10 @@ class _GZXDropDownMenuTestPageState extends State<beijing> {
                   width: double.infinity,
                   child: Container(
                     padding: EdgeInsets.only(
-                     right: 15,  bottom: 10),
+                        right: 15,  bottom: 10),
                     child: Column(
 
-                        children: getGameList_(list_game,e),
+                      children: getGameList_(list_game,e),
                     ),
                   ),
                 )
@@ -176,19 +176,19 @@ class _GZXDropDownMenuTestPageState extends State<beijing> {
       crs_lose.forEach((element) {
         crs_win.add(element);
       });
-     Border border;
-     double bot;
-     if(list_game_.length>1){
-       border =  Border(bottom: BorderSide(width: 0.2,color: Colors.grey));
-       bot =15;
-     }else{
-       border = null;
-       bot =0;
-     }
-     if(e == list_game_.length-1){
-       bot = 0;
-       border = null;
-     }
+      Border border;
+      double bot;
+      if(list_game_.length>1){
+        border =  Border(bottom: BorderSide(width: 0.2,color: Colors.grey));
+        bot =15;
+      }else{
+        border = null;
+        bot =0;
+      }
+      if(e == list_game_.length-1){
+        bot = 0;
+        border = null;
+      }
       return Stack(
         children: <Widget>[
           Container(
@@ -220,7 +220,7 @@ class _GZXDropDownMenuTestPageState extends State<beijing> {
       );
     }).toList();
   }
-getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,sf,crs_win,ttg_odds,half_odds,onup){
+  getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,sf,crs_win,ttg_odds,half_odds,onup){
 
     switch(index){
       case 0:
@@ -297,12 +297,12 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,sf,crs_win,ttg_odds,
 
 
 
-}
+  }
   getGameNum(){
     game_ids = [];
     games.forEach((key, value) {
-        List ls  = value;
-        ls.forEach((element) {
+      List ls  = value;
+      ls.forEach((element) {
         List e2 = element["check_info"];
         e2.forEach((element1) {
           List e3 = element1["bet_way"];
@@ -460,11 +460,11 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,sf,crs_win,ttg_odds,
                                   GestureDetector(
                                     onTap: (){
 
-                                    if(int.parse(getGameNum())< least_game){
+                                      if(int.parse(getGameNum())< least_game){
                                         Toast.toast(context,msg: "请至少选择"+least_game.toString()+"比赛");
                                         return;
                                       }
-                                  //一场比赛选了spf、rqspf
+                                      //一场比赛选了spf、rqspf
                                       JumpAnimation().jump(beijingorder(games,game_ids,(value){
                                         setState(() {
                                           games = value;

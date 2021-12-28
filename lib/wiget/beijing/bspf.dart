@@ -66,8 +66,8 @@ class _ChildState extends State<bspf> {
               ),
               double.parse(widget.p_goal)!=0?Container(
                 margin: EdgeInsets.only(
-                    left: ScreenUtil().setWidth(5),
-                    right: ScreenUtil().setWidth(5)),
+                    left: ScreenUtil().setWidth(35),
+                    right: ScreenUtil().setWidth(35)),
                 child: Text(
                   double.parse(widget.p_goal)>0?"("+"+"+widget.p_goal+")"+"VS":"("+widget.p_goal+")"+"VS",
                   style: TextStyle(color: double.parse(widget.p_goal)>0?Colors.red:Colors.green ,fontSize: ScreenUtil().setSp(16)),
